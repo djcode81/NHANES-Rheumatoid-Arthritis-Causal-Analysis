@@ -1,0 +1,4 @@
+"cluster","n","age_mean","smoking_current_prev","smoking_former_prev","vitD_def_prev","crp_mean","crp_sd","RA_prev"
+"1",224,40.3,0,100,42,0.53,1.38,16.1
+"2",3059,47.7,0,0,33.7,0.38,0.65,22.3
+"3",1024,44.3,100,0,38,0.48,0.91,27.2
