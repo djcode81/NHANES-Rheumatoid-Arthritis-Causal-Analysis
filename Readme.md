@@ -1,4 +1,4 @@
-# NHANES Rheumatoid Arthritis Causal Analysis
+# Causal Effects of Smoking and Vitamin D on Rheumatoid Arthritis Risk
 
 ## Overview
 Causal inference analysis examining modifiable risk factors for rheumatoid arthritis using NHANES 2009-2010 data. Compares traditional epidemiological associations with causal effect estimates using Targeted Maximum Likelihood Estimation (TMLE).
