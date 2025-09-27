@@ -1,48 +1,46 @@
 # Causal Effects of Smoking and Vitamin D on Rheumatoid Arthritis Risk
 
 ## Overview
-Causal inference analysis examining modifiable risk factors for rheumatoid arthritis using NHANES 2009-2010 data. Compares traditional epidemiological associations with causal effect estimates using Targeted Maximum Likelihood Estimation (TMLE).
+Causal inference analysis examining modifiable risk factors for rheumatoid arthritis using NHANES 2009-2010 data (N=4,307). Compares traditional epidemiological associations with causal effect estimates using Targeted Maximum Likelihood Estimation (TMLE).
 
 ## Key Findings
 - **Smoking**: Strong causal effect (ATE = +9.8 percentage points RA risk, p<0.001)
-- **Vitamin D deficiency**: No significant causal association (ATE = +1.5 percentage points, p=0.30)
-- **Biomarker clustering**: Identified high-inflammation phenotype with 44% RA prevalence
+- **Vitamin D deficiency**: No significant causal effect (ATE = +1.5 percentage points, p=0.30, CI crosses null)
+- **Behavioral risk clustering**: Three distinct profiles with RA prevalence ranging from 15% to 28%
+
+## Results
+
+### Forest Plot: Association vs Causal Effects
+![Forest Plot](outputs/forest_plot.png)
+
+### Behavioral Risk Clusters
+![Risk Clusters Heatmap](outputs/biomarker_heatmap.png)
+
+![RA Prevalence by Cluster](outputs/ra_by_cluster.png)
 
 ## Methods
-- **Population**: 3,487 US adults ≥20 years from NHANES 2009-2010
+- **Population**: 4,307 US adults ≥20 years from NHANES 2009-2010
 - **Exposures**: Current smoking, vitamin D deficiency (<50 nmol/L)
 - **Outcome**: Doctor-diagnosed rheumatoid arthritis
-- **Analysis**: Survey-weighted logistic regression, TMLE for causal inference, k-means clustering
-
-## Data Sources
-- Demographics (DEMO_F.xpt)
-- Medical conditions (MCQ_F.xpt) 
-- Vitamin D levels (VID_F.xpt)
-- Smoking history (SMQ_F.xpt)
-- C-reactive protein (CRP_F.xpt)
+- **Analysis**: Survey-weighted logistic regression, TMLE for causal inference, behavioral risk clustering
 
 ## Repository Structure
 ```
-├── data/                    # Raw NHANES XPT files
-├── clean.r                  # Data processing pipeline
-├── stat.r                   # Traditional statistical analysis
-├── tmle_fast.r             # Causal inference with TMLE
-├── forest_plot.r           # Visualization comparing methods
-├── biomarker.r             # Inflammatory phenotype clustering
-├── cleaned_nhanes_f.csv    # Analysis-ready dataset
-└── outputs/                # Results and visualizations
+├── data/
+├── clean.r
+├── stat.r
+├── tmle_fast.r
+├── forest_plot.r
+├── biomarker.r
+├── cleaned_nhanes_f.csv
+└── outputs/
 ```
 
 ## Clinical Implications
-Results support smoking cessation as a primary RA prevention strategy. Vitamin D supplementation shows no causal benefit for RA prevention, despite observational associations in some studies.
+Results support smoking cessation as a primary RA prevention strategy. Vitamin D supplementation shows no causal benefit for RA prevention, despite observational associations in some studies. Risk stratification identifies high-risk groups for targeted interventions.
 
 ## Technical Notes
 - Survey weights applied for population representativeness
 - TMLE provides double-robust causal estimates
-- Complete case analysis (missing data <5% for key variables)
+- Behavioral clustering avoids circular biomarker dependencies
 - Reproducible with `set.seed(123)`
-
-## Future Extensions
-- Multi-cycle analysis (2009-2018) for increased power
-- Gene-environment interactions with HLA-DRB1
-- Longitudinal analysis with incident RA cases
